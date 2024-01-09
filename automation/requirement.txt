@@ -1,0 +1,17 @@
+for email automation,you need to install some libraries first , it can be done as: 
+-------->pip install secure-smtplib
+-------->pip install pyttsx3
+-------->pip install playsound
+-------->pip install PyAudio
+-------->pip install SpeechRecognition
+
+
+
+app password is not the gmail password, you need to create the app password first in your google account
+
+
+for volume control, you need to first install some libraries, it can be done as:
+-------->pip install comtypes
+-------->pip install pycaw
+-------->
+-------->
