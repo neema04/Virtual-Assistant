@@ -1,3 +1,15 @@
-make sure you install the libraries mentioned in requirmets.txt
+# Virtual Assistant
 
-also, the commented codes are there just in case the written code doesnt work
+### Dependencies
+To install the required Python packages you can use the following command:
+
+```bash
+pip install -r requirements.txt
+```
+
+### Run script
+To run the `main.py`, load the dependecies requirements and use the following command:
+
+```bash
+py main.py
+```
