@@ -1,0 +1,13 @@
+# Environment
+env/
+
+# Speech Recognition Model
+speech_model
+
+weather_data.json
+
+# directories
+model/
+__pycache__
+automation
+offline_speech
