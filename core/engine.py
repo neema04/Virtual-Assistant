@@ -2,7 +2,7 @@ from vosk import Model, KaldiRecognizer
 import pyaudio
 
 def initialize_model():
-    model = Model('model/')
+    model = Model('model')
     recognizer = KaldiRecognizer(model, 16000)
     mic = pyaudio.PyAudio()
     stream = mic.open(rate=16000, channels=1, format=pyaudio.paInt16,
