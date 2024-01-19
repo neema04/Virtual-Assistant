@@ -40,7 +40,7 @@ if __name__ == "__main__":
         # Terminate session
         for intent in intents:
             if intent['tag'] == 'goodbye' and match_intent(user_input, intent):
-                print("Chatbot:", GREEN + random.choice(intent['responses']) + RESET)
+                print(GREEN + random.choice(intent['responses']) + RESET)
                 exit()
 
         matched_intent = None
