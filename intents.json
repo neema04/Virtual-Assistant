@@ -41,7 +41,7 @@
                 "Goodbye",
                 "Get lost",
                 "Till next time",
-                "bbye"
+                "exit"
             ],
             "responses": [
                 "See you!",
@@ -314,6 +314,62 @@
             ],
             "responses": [
                 "I was made in 2023, if that's what you are asking!"
+            ]
+        },
+        {
+            "_comment": "Create a Folder",
+            "tag": "Create",
+            "patterns": [
+                "create folder",
+                "create directory",
+                "create a folder",
+                "create a directory",
+                "make a new folder",
+                "make a new directory",
+                "generate a directory",
+                "add a directory",
+                "construct a folder",
+                "start a new folder",
+                "build a directory",
+                "establish a folder"
+            ],
+            "responses": [
+                "What would you like to be your folder name?",
+                "Please provide a name for your new folder.",
+                "Give a name to your folder.",
+                "What should be the name of the folder you want to create?",
+                "Enter the name for your new folder.",
+                "Specify the name for the folder you are creating.",
+                "Your new folder needs a name. What will it be?",
+                "Tell me the name you'd like for your folder."
+            ]
+        },
+        {
+            "_comment": "Delete a Folder",
+            "tag": "Delete",
+            "patterns": [
+                "delete folder",
+                "remove directory",
+                "delete a folder",
+                "delete a directory",
+                "remove a folder",
+                "remove a directory",
+                "erase a folder",
+                "erase a directory",
+                "destroy a folder",
+                "destroy a directory"
+            ],
+            "responses": [
+                "What is the name of the folder you want to delete?",
+                "Please provide the name of the folder you wish to delete.",
+                "Give me the name of the folder you want to remove.",
+                "Specify the name of the folder you want to delete.",
+                "Tell me the name of the folder you'd like to erase.",
+                "Enter the name of the folder you want to destroy.",
+                "What's the name of the folder you want to eliminate?",
+                "Which folder would you like to remove?",
+                "Please tell me the name of the folder you want to erase.",
+                "Specify the folder you want to eliminate."
             ]
         }
     ]

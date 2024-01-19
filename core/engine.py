@@ -1,7 +1,5 @@
 from vosk import Model, KaldiRecognizer
 import pyaudio
-import json
-import random
 
 def initialize_model():
     model = Model('model')
@@ -21,4 +19,3 @@ def speech_recognize(recognizer, stream):
         if recognizer.AcceptWaveform(data):
             result = recognizer.Result()[14:-3]
             return result.lower()
-            
