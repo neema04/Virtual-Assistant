@@ -133,21 +133,6 @@
             ]
         },
         {
-            "tag": "datetime",
-            "patterns": [
-                "What is the time",
-                "what is the date",
-                "date",
-                "time",
-                "tell me the date",
-                "day",
-                "what day is is today"
-            ],
-            "responses": [
-                "Date and Time"
-            ]
-        },
-        {
             "tag": "whatsup",
             "patterns": [
                 "Whats up",
@@ -163,6 +148,7 @@
         {
             "tag": "haha",
             "patterns": [
+                "ha ha",
                 "haha",
                 "lol",
                 "rofl",
@@ -210,12 +196,24 @@
         {
             "tag": "weather",
             "patterns": [
-                "temperature",
                 "weather",
-                "how hot is it"
+                "climate",
+                "What's the temperature like today",
+                "Tell me about the weather conditions",
+                "How hot is it right now",
+                "Give me the current weather report",
+                "Is it going to rain today",
+                "Tell me the forecast for tomorrow",
+                "What's the weather like",
+                "Give me an update on the weather",
+                "Can you tell me about today's weather",
+                "what's the temperature today",
+                "What's the forecast for the week"
             ],
             "responses": [
-                "..."
+                    "The current temperature in {city} is {temperature} degrees Celsius. And, currently the weather is {description}.",
+                    "It's {temperature} degrees Celsius in {city} right now. The weather is {description}.",
+                    "In {city}, the temperature is {temperature} degrees Celsius. The weather condition is {description}."
             ]
         },
         {

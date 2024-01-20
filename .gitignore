@@ -1,13 +1,15 @@
 # Environment
 env/
 
+# Secret Keys
+.env
+
 # Speech Recognition Model
-speech_model
+model/
 
 weather_data.json
 
 # directories
-model/
+offline_speech/
 __pycache__
-automation
-offline_speech
+automation/
