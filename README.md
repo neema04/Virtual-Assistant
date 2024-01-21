@@ -14,6 +14,20 @@ To run the `main.py`, load the dependencies requirements and use the following c
 py main.py
 ```
 
+### API Refrences
+Below is a list of websites and APIs used in this project. Click on the links to access their documentation and obtain the necessary information.
+
+- [Open Weather Map](https://openweathermap.org/api)
+
+*Make sure to review the documentation for each API to understand their usage and any specific requirements, such as obtaining API keys or authentication tokens.*
+
+### Setting Up API Key
+- Create a `.env` file in the main directory of the project. Inside the `.env` file, define the variable for your *API key*
+
+```bash
+WEATHER_API_KEY = "{{secret.YOUR_API_KEY}}"
+```
+
 ### Check model
 
 ```bash
@@ -31,3 +45,6 @@ if __name__ == "__main__":
             transcript += result + ' '
             print(transcript)
 ```
+
+---
+Feel free to send issues if you face any problem.
