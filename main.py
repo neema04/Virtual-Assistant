@@ -1,10 +1,11 @@
 import random
 import os
+import time
 import requests
 import json
 from core.engine import *
 from core.intents import *
-from core.manage_intents import *
+# from core.manage_intents import *
 
 # Load Secret Keys
 from dotenv import load_dotenv
@@ -90,6 +91,12 @@ def weather_forecast():
     url = f"{base_url}q={city}&appid={api_key}"
     response = requests.get(url)
 
+    try:
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as err:
+        print(f"HTTP Error: {err}")
+        return f"Error: Could not retrieve weather data for {city}. Please try again later."
+
     if response.status_code == 200:
         # Save JSON response to a file
         file_path = 'data_archive/weather_data.json'
@@ -114,6 +121,8 @@ def weather_forecast():
     else:
         print(
             f"Error: {response.status_code}. Could not retrieve weather data for {city}.")
+        return f"Error: Could not retrieve weather data for {city}. Please try again later."
+
 
 
 if __name__ == "__main__":
@@ -126,33 +135,52 @@ if __name__ == "__main__":
     print(GREEN + "Hello! Ask me anything or say 'goodbye' to exit." + RESET)
 
     while True:
-        user_input = speech_recognize(recognizer, stream)
-        print(user_input)
+        try:
+            user_input = speech_recognize(recognizer, stream)
+            print(user_input)
 
-        matched_intent = None
-        for item in intents:
-            if match_intent(user_input, item):
-                matched_intent = item['tag']
-                break
+            matched_intent = None
+            for item in intents:
+                if match_intent(user_input, item):
+                    matched_intent = item['tag']
+                    break
 
-        if matched_intent == 'Create':
-            response(matched_intent)
-            create_folder()
+            if matched_intent == 'Create':
+                response(matched_intent)
+                create_folder()
 
-        elif matched_intent == 'Delete':
-            response(matched_intent)
-            delete_folder()
+            elif matched_intent == 'Delete':
+                response(matched_intent)
+                delete_folder()
 
-        elif matched_intent == 'weather':
-            city, description, temperature = weather_forecast()
-            if city:
-                response(matched_intent, city, description, temperature)
+            elif matched_intent == 'weather':
+                try:
+                    city, description, temperature = weather_forecast()
+                    # If the speech_recognizer is not able to parse city name re-run the recognizer instance
+                    while not city:
+                        print("I'm sorry, I couldn't understand the city name. Could you please rephrase it?")
+                        city = speech_recognize(recognizer, stream)
+                        if not city:
+                            print("I still couldn't understand the city name. Please try again.")
 
+                    response(matched_intent, city, description, temperature)
+                except ValueError as e:
+                    print(f"Error: {e}")
+                    print("Weather data retrieval failed.")
+                except Exception as e:
+                    print(f"Unexpected error: {e}")
+                    print("An unexpected error occurred during weather data retrieval.")
+                    time.sleep(1)  # Sshort sleep to handle errors and prevent continuous looping
+                    break  # Stop the loop if an exception occurs
+            
+            else:
+                response(matched_intent)
 
-        else:
-            response(matched_intent)
+            # Terminate session
+            for intent in intents:
+                if intent['tag'] == 'goodbye' and match_intent(user_input, intent):
+                    exit()
 
-        # Terminate session
-        for intent in intents:
-            if intent['tag'] == 'goodbye' and match_intent(user_input, intent):
-                exit()
+        except Exception as e:
+            print(f"Error in speech recognition: {e}")
+            time.sleep(1)
