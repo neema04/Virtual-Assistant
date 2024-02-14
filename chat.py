@@ -4,15 +4,16 @@ import json
 import random
 
 # import Speech Engine
-from core.engine import *
-from core.intents import *
+# from core.engine import *
+# from core.intents import *
 
 # import Intent 
 from neuralnet.model import IntentModelClassifier
 from neuralnet.nltk_utils import bag_of_words, tokenize
 
 # import task automation functions
-from directory import *
+from utils.directory import *
+from utils.weather import *
 
 # Setting device agnostic code
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -52,7 +53,7 @@ bot_name = "ByteBot"
 print("Let's chat! (type 'quit' to exit)")
 while True:
     sentence = input(f"{GREEN}You{RESET}: ")
-    if sentence == "quit" or sentence == "bye":
+    if sentence == "bye":
         break
 
     sentence = tokenize(sentence)
@@ -83,12 +84,18 @@ while True:
                     folder_name = input(f"{GREEN}Name your folder{RESET}: ")
                     create_folder(folder_name)
                     
+                # Delete Folder
                 elif tag == "Delete":
                     print(f"{RED}{bot_name}{RESET}: {response}")
                     folder_name = input(f"{GREEN}Name of folder{RESET}: ")
                     delete_folder(folder_name)
-
-
+                
+                # Weather Forecast
+                elif tag == "weather":
+                    print(f"{RED}{bot_name}{RESET}: {response}")
+                    city = input(f"{GREEN}Enter city name{RESET}: ")
+                    city, description, temperature = weather_forecast(city)
+                    print(f"{RED}{bot_name}{RESET}: In {city}, the temperature is {temperature} degrees Celsius. The weather condition is {description}.")
 
                 else:
                     print(f"{RED}{bot_name}{RESET}: {response}")
