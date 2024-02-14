@@ -356,6 +356,24 @@
                 "Please tell me the name of the folder you want to erase.",
                 "Specify the folder you want to eliminate."
             ]
+        },
+        {
+            "_comment": "Play YouTube",
+            "tag": "YouTube",
+            "patterns": [
+                "play video on YouTube",
+                "watch video on YouTube",
+                "open YouTube",
+                "search video on YouTube",
+                "find video on YouTube"
+            ],
+            "responses": [
+                "Sure! Opening YouTube...",
+                "Let me find that for you on YouTube.",
+                "Playing video on YouTube...",
+                "Alright! Let's open YouTube.",
+                "Searching for the video on YouTube..."
+            ]
         }
     ]
 }

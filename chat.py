@@ -14,6 +14,7 @@ from neuralnet.nltk_utils import bag_of_words, tokenize
 # import task automation functions
 from utils.directory import *
 from utils.weather import *
+from utils.online_surf import *
 
 # Setting device agnostic code
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -96,6 +97,12 @@ while True:
                     city = input(f"{GREEN}Enter city name{RESET}: ")
                     city, description, temperature = weather_forecast(city)
                     print(f"{RED}{bot_name}{RESET}: In {city}, the temperature is {temperature} degrees Celsius. The weather condition is {description}.")
+                
+                elif tag == "YouTube":
+                    print(f"{RED}{bot_name}{RESET}: {response}")
+                    query = input(f"{GREEN}Enter search term{RESET}: ")
+                    youtube_search(query)
+                    print(f"{RED}{bot_name}{RESET}: Click on link https://www.youtube.com/results?search_query={query}")
 
                 else:
                     print(f"{RED}{bot_name}{RESET}: {response}")
