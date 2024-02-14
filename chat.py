@@ -1,9 +1,18 @@
 import torch
+import os
 import json 
 import random
 
+# import Speech Engine
+from core.engine import *
+from core.intents import *
+
+# import Intent 
 from neuralnet.model import IntentModelClassifier
 from neuralnet.nltk_utils import bag_of_words, tokenize
+
+# import task automation functions
+from directory import *
 
 # Setting device agnostic code
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -63,6 +72,26 @@ while True:
     if prob.item() > 0.75:
         for intent in intents['intents']:
             if tag == intent['tag']:
-                print(f"{RED}{bot_name}{RESET}: {random.choice(intent['responses'])}")
+                response = random.choice(intent['responses'])
+
+                # Create Folder
+                if tag == "Create":
+                    # recognizer, mic, stream = initialize_model()
+                    # print(user_input)
+                    # folder_name = speech_recognize(recognizer, stream)
+                    print(f"{RED}{bot_name}{RESET}: {response}")
+                    folder_name = input(f"{GREEN}Name your folder{RESET}: ")
+                    create_folder(folder_name)
+                    
+                elif tag == "Delete":
+                    print(f"{RED}{bot_name}{RESET}: {response}")
+                    folder_name = input(f"{GREEN}Name of folder{RESET}: ")
+                    delete_folder(folder_name)
+
+
+
+                else:
+                    print(f"{RED}{bot_name}{RESET}: {response}")
+                break
     else:
         print(f'{RED}{bot_name}{RESET}: I donot understand...')
