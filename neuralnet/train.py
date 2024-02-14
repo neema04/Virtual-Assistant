@@ -53,10 +53,10 @@ y_train = np.array(y_train)
 
 
 # Setting up device-agnostic code
-# device = 'cuda' if torch.cuda.is_available else 'cpu'
-# print(device)
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+print(device)
 
-device = 'cpu'
+# device = 'cpu'
 
 # Custom DataLoader
 class ChatDataLoader(Dataset):
@@ -109,12 +109,12 @@ for epoch in range(epochs):
         print(f'Epoch:{epoch} --- Train loss: {loss:.4f}')
 
 data = {
-"model_state": model.state_dict(),
-"input_size": len(X_train[0]),
-"hidden_size": 8,
-"output_size": len(tags),
-"all_words": all_words,
-"tags": tags
+    "model_state": model.state_dict(),
+    "input_size": len(X_train[0]),
+    "hidden_size": 8,
+    "output_size": len(tags),
+    "all_words": all_words,
+    "tags": tags
 }
 
 
@@ -122,6 +122,4 @@ model_save_path = "model/intent.pth"
 print(f'Saving trained model to directory {model_save_path}')
 torch.save(data, model_save_path)
 print(f'Saved trained model to directory {model_save_path}')
-
-
 
