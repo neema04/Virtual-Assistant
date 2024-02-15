@@ -76,7 +76,10 @@
             "responses": [
                 "Sorry, can't understand you",
                 "Please give me more info",
-                "Not sure I understand"
+                "Not sure I understand",
+                "I'm having trouble understanding that",
+                "Could you please repeat that?",
+                "I didn't catch that, could you repeat it?"
             ],
             "context": [
                 ""
@@ -85,11 +88,11 @@
         {
             "tag": "options",
             "patterns": [
-                "How you could help me?",
-                "What you can do?",
-                "What help you provide?",
-                "How you can be helpful?",
-                "What support is offered"
+                "How can you help me?",
+                "What can you do?",
+                "What help do you provide?",
+                "How can you be helpful?",
+                "What support is offered?"
             ],
             "responses": [
                 "I am a general purpose chatbot. My capabilities are : \n 1. I can chat with you. Try asking me for jokes or riddles! \n 2. Ask me the date and time \n 3. I can google search for you. Use format google: your query \n 4. I can get the present weather for any city. Use format weather: city name \n 5. I can get you the top 10 trending songs globally. Type 'songs' \n 6. I can set a timer for you. Enter 'set a timer: minutes to timer' \n For suggestions to help me improve, send an email to my creator shashinmaharjan@gmail.com . Thank you!! "
@@ -211,9 +214,9 @@
                 "What's the forecast for the week"
             ],
             "responses": [
-                "Sure! What city would you like the weather forecast for?",
-                "I'd be happy to check the weather. Could you please tell me the city?",
-                "Great! To provide the weather forecast, I just need to know the city name. What city are you interested in?"
+                    "The current temperature in {city} is {temperature} degrees Celsius. And, currently the weather is {description}.",
+                    "It's {temperature} degrees Celsius in {city} right now. The weather is {description}.",
+                    "In {city}, the temperature is {temperature} degrees Celsius. The weather condition is {description}."
             ]
         },
         {
@@ -222,14 +225,21 @@
                 "You are awesome",
                 "you are the best",
                 "you are great",
-                "you are good"
+                "you are good",
+                "You're amazing",
+                "You're fantastic",
+                "You're brilliant",
+                "You're awesome"
             ],
             "responses": [
-                "Thank you!"
+                "Thank you!",
+                "Thank you! You're pretty awesome yourself!",
+                "You're too kind! Thank you!",
+                "Aw, shucks! Thanks!"
             ]
         },
         {
-            "tag": "nicetty",
+            "tag": "nicety",
             "patterns": [
                 "it was nice talking to you",
                 "good talk"
@@ -260,12 +270,25 @@
             ]
         },
         {
+            "tag": "greetreply",
+            "patterns": [
+                "i am good",
+                "I'm good",
+                "i am fine",
+                " i'm fine",
+                "good"
+            ],
+            "responses": [
+                "Good to know!"
+            ]
+        },
+        {
             "tag": "timer",
             "patterns": [
                 "set a timer"
             ],
             "responses": [
-                "..."
+                "Sure, for how long?"
             ]
         },
         {
@@ -358,56 +381,69 @@
             ]
         },
         {
-            "_comment": "Play YouTube",
-            "tag": "YouTube",
+            "tag": "email",
             "patterns": [
-                "play video on YouTube",
-                "watch video on YouTube",
-                "open YouTube",
-                "search video on YouTube",
-                "find video on YouTube"
+                "email",
+                "send email",
+                "Send an email",
+                "Send an email for me",
+                "write an email",
+                "write me an email"
             ],
             "responses": [
-                "Sure! Opening YouTube...",
-                "Let me find that for you on YouTube.",
-                "Playing video on YouTube...",
-                "Alright! Let's open YouTube.",
-                "Searching for the video on YouTube..."
+                "Sure, who would you like to send the email to?"
+            ]
+        },
+        {
+            "tag": "volume",
+            "patterns": [
+                "volume",
+                "change volume",
+                "set the volume to",
+                "change the volume"
+            ],
+            "responses": [
+                "Sure, what would you like to set the volumn to?"
+            ]
+        },
+        {
+            "tag": "youtube",
+            "patterns": [
+                "video",
+                "play video",
+                "play a video",
+                "play me a video",
+                "youtube",
+                "play video on youtube"
+            ],
+            "responses": [
+                "Sure, what video would you like to play on Youtube?"
             ]
         },
         {
             "tag": "Shutdown",
             "patterns": [
-                "Shutdown the device",
-                "Turn off the device",
-                "Off the device",
-                "Can you shutdown the device",
-                "Can you turn off the device"
+                "Shutdown the computer",
+                "shutdown",
+                "turn off the computer",
+                "turn off"
             ],
             "responses": [
-                "Sure! Turning off the device..."
+                "Ok, shutting down the computer...."
             ]
         },
         {
-            "tag": "Sleep",
+            "tag": "music",
             "patterns": [
-                "Sleep the device",
-                "Go to sleep mode",
-                "Sleep device"
+                "Play music",
+                "Music",
+                "Can you recommend some songs?",
+                "I want to listen to music"
             ],
             "responses": [
-                "Sure! Turning the device to sleep mode..."
-            ]
-        },
-        {
-            "tag": "LogOff",
-            "patterns": [
-                "Logoff the device",
-                "Go to Logoff mode",
-                "Logoff device"
-            ],
-            "responses": [
-                "Sure! Turning the device to LogOff mode..."
+                "Sure! What genre or artist are you in the mood for?",
+                "Let me find some great tunes for you!",
+                "I'd love to! What kind of music do you enjoy?"
             ]
         }
     ]
