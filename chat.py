@@ -15,6 +15,7 @@ from neuralnet.nltk_utils import bag_of_words, tokenize
 from utils.directory import *
 from utils.weather import *
 from utils.online_surf import *
+from utils.device_control import *
 
 # Setting device agnostic code
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -121,8 +122,26 @@ while True:
                     video_url = youtube_search(query)
                     print(f"{RED}{bot_name}{RESET}: Click on link -> {video_url}")
 
+                # Device control
+                elif tag == "Sleep" or tag == "Shutdown" or tag == "LogOff":
+                    choice = input(f"{RED}{bot_name}{RESET}: Enter device control mode once again to verify\n1. sleep\n2. shutdown\n3. logoff\n").lower()
+                    cmd = system_control(choice)
+                    for timer in range(5, 0, -1):  # Countdown from 5 to 1
+                        print(f"{RED}{bot_name}{RESET}: {response} in {timer} sec{RESET}", end="\r")
+                        time.sleep(1)  # 1-second delay between countdown messages
+                    print(f"{RED}{bot_name}{RESET}: {response} now{RESET}")
+
+                # Sending E_mail
+                elif tag == "E_mail":
+                    pass
+                
+                # """TODO: VOLUME CONTROL"""
+
+
                 else:
                     print(f"{RED}{bot_name}{RESET}: {response}")
                 break
+
+                
     else:
         print(f'{RED}{bot_name}{RESET}: I donot understand...')

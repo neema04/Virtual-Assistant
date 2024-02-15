@@ -374,6 +374,41 @@
                 "Alright! Let's open YouTube.",
                 "Searching for the video on YouTube..."
             ]
+        },
+        {
+            "tag": "Shutdown",
+            "patterns": [
+                "Shutdown the device",
+                "Turn off the device",
+                "Off the device",
+                "Can you shutdown the device",
+                "Can you turn off the device"
+            ],
+            "responses": [
+                "Sure! Turning off the device..."
+            ]
+        },
+        {
+            "tag": "Sleep",
+            "patterns": [
+                "Sleep the device",
+                "Go to sleep mode",
+                "Sleep device"
+            ],
+            "responses": [
+                "Sure! Turning the device to sleep mode..."
+            ]
+        },
+        {
+            "tag": "LogOff",
+            "patterns": [
+                "Logoff the device",
+                "Go to Logoff mode",
+                "Logoff device"
+            ],
+            "responses": [
+                "Sure! Turning the device to LogOff mode..."
+            ]
         }
     ]
 }
