@@ -1,13 +1,13 @@
 import torch
 import os
-import json 
+import json
 import random
 
 # import Speech Engine
 # from core.engine import *
 # from core.intents import *
 
-# import Intent 
+# import Intent
 from neuralnet.model import IntentModelClassifier
 from neuralnet.nltk_utils import bag_of_words, tokenize
 
@@ -18,7 +18,7 @@ from utils.online_surf import *
 
 # Setting device agnostic code
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
-print(device)
+print(f"Loaded model on: {device}")
 
 with open('intents.json', 'r') as json_data:
     intents = json.load(json_data)
@@ -36,8 +36,8 @@ model_state = model_info["model_state"]
 
 # Instantiate IntentModelClassifier
 model = IntentModelClassifier(
-    input_size, 
-    hidden_size, 
+    input_size,
+    hidden_size,
     output_size).to(device)
 
 model.load_state_dict(model_state)
@@ -68,7 +68,8 @@ while True:
     tag = tags[predicted.item()]
     # print(f"Bot: {bot_name}, {tag}")
 
-    probs = torch.softmax(output, dim=1)  # Assigns all proabability in range [0, 1]
+    # Assigns all proabability in range [0, 1]
+    probs = torch.softmax(output, dim=1)
     prob = probs[0, predicted.item()]
 
     if prob.item() > 0.75:
@@ -84,25 +85,41 @@ while True:
                     print(f"{RED}{bot_name}{RESET}: {response}")
                     folder_name = input(f"{GREEN}Name your folder{RESET}: ")
                     create_folder(folder_name)
-                    
+
                 # Delete Folder
                 elif tag == "Delete":
                     print(f"{RED}{bot_name}{RESET}: {response}")
                     folder_name = input(f"{GREEN}Name of folder{RESET}: ")
                     delete_folder(folder_name)
-                
+
                 # Weather Forecast
                 elif tag == "weather":
                     print(f"{RED}{bot_name}{RESET}: {response}")
                     city = input(f"{GREEN}Enter city name{RESET}: ")
                     city, description, temperature = weather_forecast(city)
-                    print(f"{RED}{bot_name}{RESET}: In {city}, the temperature is {temperature} degrees Celsius. The weather condition is {description}.")
-                
+                    print(
+                        f"{RED}{bot_name}{RESET}: In {city}, the temperature is {temperature} degrees Celsius. The weather condition is {description}.")
+
+                # Google Search
+                elif tag == "google":
+                    print(f"{RED}{bot_name}{RESET}: {response}")
+                    query = input(f"{GREEN}Enter search term{RESET}: ")
+                    search_results = google_search(query)
+                    if search_results:
+                        print(
+                            f"{RED}{bot_name}{RESET}: Here are the search results ->")
+                        for result in search_results:
+                            print(result)
+                    else:
+                        print(
+                            f"{RED}{bot_name}{RESET}: No search results found for '{query}'.")
+
+                # YouTube Search
                 elif tag == "YouTube":
                     print(f"{RED}{bot_name}{RESET}: {response}")
                     query = input(f"{GREEN}Enter search term{RESET}: ")
-                    youtube_search(query)
-                    print(f"{RED}{bot_name}{RESET}: Click on link https://www.youtube.com/results?search_query={query}")
+                    video_url = youtube_search(query)
+                    print(f"{RED}{bot_name}{RESET}: Click on link -> {video_url}")
 
                 else:
                     print(f"{RED}{bot_name}{RESET}: {response}")
