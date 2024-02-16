@@ -537,7 +537,7 @@
         "Here's the list of applications you have bookmarked:"
       ]
     },
-    //device control
+    //device controllll
     {
         "tag": "restartdevice",
         "patterns": [
